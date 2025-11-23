@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Drawer from './components/Drawer'
+import ChildExample from './components/ChildExample'
+
 
 // TODO: Signals were found not to be working properly, we'll come back to this!
 // Docs: https://preactjs.com/guide/v10/signals
@@ -16,7 +18,7 @@ export default function App() {
   // Lisätään esimerkkitila: laskuri (count, setCount) oletusarvolla 0
   const [count, setCount] = useState(0)
 
-  // Esimerkkitila tekstikentälle: value + setValue (destructuring + nimeämiskäytäntö)
+  // Esimerkkitila tekstikentälle: value + setValue
   const [inputValue, setInputValue] = useState('')
 
   const toggleLanguage = () => {
@@ -80,9 +82,17 @@ export default function App() {
             <div className="mb-2">Laskuri: {count}</div>
 
             {/* Klikkauksen kuuntelija (onClick) päivittää laskuria */}
-            
+
             <button className="btn btn-primary" onClick={() => setCount(prev => prev + 1)}>Lisää 1</button>
           </div>
+
+          {/* Tehtävä 6: Parent välittää count-propin ChildExample-komponentille- kun count muuttuum ChildExample useEffect tuottaa konsoliin.*/}
+         <div className="mt-6">
+          <ChildExample value={count} onIncrement={() => setCount(c => c + 1)}>
+             <div>Children: Tämä renderöidään ChildExample-komponentin kautta.</div>
+           </ChildExample>
+          </div>
+
         </div>
       </main>
 
