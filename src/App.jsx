@@ -3,12 +3,16 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Drawer from './components/Drawer'
 import ChildExample from './components/ChildExample'
+import useWindowWidth from './hooks/useWindowWidth'
 
 
 // TODO: Signals were found not to be working properly, we'll come back to this!
 // Docs: https://preactjs.com/guide/v10/signals
 
 export default function App() {
+
+
+  const windowWidth = useWindowWidth()
 
   // Simple custom language switch for the links, currently applied only to Footer
   // Check links.js and Footer.jsx for more context
@@ -93,6 +97,13 @@ export default function App() {
            </ChildExample>
           </div>
 
+          {/* Tehtävä 7: Ikkunan leveyden näyttäminen ja Hook */}
+          <div className="mt-4 p-4">
+            <div className="mb-2">Laskuri: {count}</div>
+            <div className="mb-2">Ikkunan leveys: {windowWidth}px</div> {/* renderöinti varmistaa hookin toimivuuden */}
+            <button className="btn btn-primary" onClick={() => setCount(prev => prev + 1)}>Lisää 1</button>
+          </div>
+
         </div>
       </main>
 
@@ -100,5 +111,4 @@ export default function App() {
     </Drawer>
 
   </>
-
 }
